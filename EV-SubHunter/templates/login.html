@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EV-SubHunter Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-body">
+  <main class="auth-shell">
+    <section class="auth-card glass-card">
+      <div class="brand-mark">
+        <span>EV</span>
+      </div>
+      <p class="eyebrow">EV-CYBER-ACADEMY</p>
+      <h1>EV-SubHunter</h1>
+      <p class="auth-copy">Premium educational reconnaissance dashboard for authorized labs, CTFs, and student bug bounty practice.</p>
+
+      <form method="post" class="login-form">
+        <label for="password">Dashboard Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter access password" autocomplete="current-password" required>
+        {% if error %}
+        <p class="form-error">{{ error }}</p>
+        {% endif %}
+        <button type="submit">Unlock Dashboard</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_name }} Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar glass-panel">
+      <div class="brand-row">
+        <div class="brand-mark small"><span>EV</span></div>
+        <div>
+          <strong>EV-SubHunter</strong>
+          <small>EV-CYBER-ACADEMY</small>
+        </div>
+      </div>
+      <nav class="nav-list">
+        <a href="#scan">Scan Panel</a>
+        <a href="#console">Live Console</a>
+        <a href="#history">History</a>
+      </nav>
+      <a class="logout-link" href="{{ url_for('logout') }}">Logout</a>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Founder: VimalTheHacker</p>
+          <h1>Authorized Subdomain Recon</h1>
+        </div>
+        <div class="status-pill" id="statusPill">Ready</div>
+      </header>
+
+      <section class="stats-grid" aria-label="Scan statistics">
+        <article class="stat-card glass-card">
+          <span>Discovered</span>
+          <strong id="foundCount">0</strong>
+        </article>
+        <article class="stat-card glass-card">
+          <span>Resolved</span>
+          <strong id="resolvedCount">0</strong>
+        </article>
+        <article class="stat-card glass-card">
+          <span>Progress</span>
+          <strong id="progressText">0%</strong>
+        </article>
+        <article class="stat-card glass-card">
+          <span>Target</span>
+          <strong id="targetText">-</strong>
+        </article>
+      </section>
+
+      <section id="scan" class="work-grid">
+        <article class="panel glass-card scan-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Scan Panel</p>
+              <h2>Launch Enumeration</h2>
+            </div>
+          </div>
+          <form id="scanForm" class="scan-form">
+            <label for="domainInput">Target Domain</label>
+            <input id="domainInput" type="text" placeholder="example.com" required>
+            <label for="threadsInput">DNS Threads</label>
+            <input id="threadsInput" type="number" min="1" max="120" value="40">
+            <label for="wordlistInput">Custom Wordlist</label>
+            <textarea id="wordlistInput" rows="7" placeholder="admin&#10;dev&#10;staging&#10;api"></textarea>
+            <label for="wordlistFile" class="file-drop">Load .txt Wordlist</label>
+            <input id="wordlistFile" class="file-input" type="file" accept=".txt,text/plain">
+            <button id="scanButton" type="submit">Start Scan</button>
+          </form>
+          <div class="progress-track" aria-label="Scan progress">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <p class="legal-line">Strictly for labs, CTFs, and authorized bug bounty programs.</p>
+        </article>
+
+        <article class="panel glass-card export-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Export Panel</p>
+              <h2>Saved Results</h2>
+            </div>
+          </div>
+          <p id="exportPath" class="export-path">Results will appear after a completed scan.</p>
+          <a id="exportButton" class="secondary-button disabled" href="#">Export Results</a>
+        </article>
+      </section>
+
+      <section id="console" class="panel glass-card console-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Live Results Console</p>
+            <h2>Discovery Stream</h2>
+          </div>
+          <div class="scanner-dot" id="scannerDot"></div>
+        </div>
+        <div id="consoleOutput" class="console-output">
+          <p class="console-muted">Waiting for scan...</p>
+        </div>
+      </section>
+
+      <section id="history" class="panel glass-card history-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Recent Scan History</p>
+            <h2>Target Nodes</h2>
+          </div>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <footer class="footer-brand">EV-CYBER-ACADEMY · EV-SubHunter · Founder VimalTheHacker</footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
